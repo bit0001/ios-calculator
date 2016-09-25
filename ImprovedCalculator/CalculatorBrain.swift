@@ -72,13 +72,18 @@ class CalculatorBrain {
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let constant):
-                description = symbol
+                if isPartialResult {
+                    description += symbol
+                } else {
+                    description = symbol
+                }
+
                 accumulator = constant
             case .Unary(let function):
                 description = symbol + String(accumulator)
                 accumulator = function(accumulator)
             case .Binary(let function):
-                description = String(accumulator) + symbol
+                description = getNumberString(number: accumulator) + symbol
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
             case .Equal:
