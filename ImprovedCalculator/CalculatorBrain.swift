@@ -42,7 +42,7 @@ class CalculatorBrain {
     private let operations = [
         "π": Operator.Constant(M_PI),
         "e": Operator.Constant(M_E),
-        "±": Operator.Unary({ -1 * $0 }),
+        "-": Operator.Unary({ -1 * $0 }),
         "√": Operator.Unary(sqrt),
         "∛": Operator.Unary({ pow($0, 1.0 / 3.0) }),
         "x⁻¹": Operator.Unary({ 1 / $0 }),
