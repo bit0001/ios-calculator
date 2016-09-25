@@ -10,6 +10,7 @@ func factorial(number: Double) -> Double {
 class CalculatorBrain {
     
     private var accumulator = 0.0
+    private var previousOperationIsConstant = false
     
     var result: Double {
         return accumulator
@@ -77,8 +78,8 @@ class CalculatorBrain {
                 } else {
                     description = symbol
                 }
-
                 accumulator = constant
+                previousOperationIsConstant = true
             case .Unary(let function):
                 if isPartialResult {
                     description = description + symbol + getStringBetweenParenthesis(description: String(accumulator))
@@ -88,17 +89,26 @@ class CalculatorBrain {
                 }
 
                 accumulator = function(accumulator)
+                previousOperationIsConstant = true
             case .Binary(let function):
-                description += getNumberString(number: accumulator) + symbol
+                if previousOperationIsConstant {
+                    description += symbol
+                } else {
+                    description += getNumberString(number: accumulator) + symbol
+                }
+                
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
+                previousOperationIsConstant = false
             case .Equal:
-                if pending != nil {
+                if isPartialResult {
                     description += getNumberString(number: accumulator)
                 }
                 executePendingBinaryOperation()
+                previousOperationIsConstant = false
             case .Random:
                 accumulator = drand48()
+                previousOperationIsConstant = false
             }
         }
     }
