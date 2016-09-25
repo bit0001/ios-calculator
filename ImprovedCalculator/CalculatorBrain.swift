@@ -96,8 +96,12 @@ class CalculatorBrain {
             }
         }
     }
+    
+    private func getUnaryOperationString(symbol: String, description: String) -> String {
+        return symbol + "(" + description + ")"
+    }
 
-    func getNumberString(number: Double) -> String {
+    private func getNumberString(number: Double) -> String {
         switch number {
         case M_PI:
             return "π"
