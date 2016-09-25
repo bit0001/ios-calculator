@@ -88,7 +88,18 @@ class CalculatorBrain {
             }
         }
     }
-    
+
+    func getNumberString(number: Double) -> String {
+        switch number {
+        case M_PI:
+            return "π"
+        case M_E:
+            return "e"
+        default:
+            return String(number)
+        }
+    }
+
     private func executePendingBinaryOperation() {
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.fistOperand, accumulator)
