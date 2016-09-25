@@ -72,6 +72,7 @@ class CalculatorBrain {
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let constant):
+                description = symbol
                 accumulator = constant
             case .Unary(let function):
                 accumulator = function(accumulator)
