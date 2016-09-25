@@ -11,6 +11,7 @@ class CalculatorBrain {
     
     private var accumulator = 0.0
     private var previousOperationIsConstantOrUnary = false
+    private var previousOperatorIsEqual = false
     
     var result: Double {
         return accumulator
@@ -22,6 +23,11 @@ class CalculatorBrain {
     }
     
     func setOperand(operand: Double) {
+        if previousOperationIsConstantOrUnary || previousOperatorIsEqual {
+            description = ""
+            previousOperationIsConstantOrUnary = false
+            previousOperatorIsEqual = false
+        }
         accumulator = operand
     }
     
@@ -76,6 +82,7 @@ class CalculatorBrain {
                 description = isPartialResult ? description + symbol : symbol
                 accumulator = constant
                 previousOperationIsConstantOrUnary = true
+                previousOperatorIsEqual = false
             case .Unary(let function):
                 if isPartialResult {
                     description = description + symbol + getStringBetweenParenthesis(description: String(accumulator))
@@ -83,11 +90,11 @@ class CalculatorBrain {
                     description = symbol + getStringBetweenParenthesis(
                         description: description == "" ? String(accumulator) : description)
                 }
-
                 accumulator = function(accumulator)
                 previousOperationIsConstantOrUnary = true
+                previousOperatorIsEqual = false
             case .Binary(let function):
-                if previousOperationIsConstantOrUnary {
+                if previousOperationIsConstantOrUnary || previousOperatorIsEqual {
                     description += symbol
                 } else {
                     description += getNumberString(number: accumulator) + symbol
@@ -96,6 +103,7 @@ class CalculatorBrain {
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
                 previousOperationIsConstantOrUnary = false
+                previousOperatorIsEqual = false
             case .Equal:
                 if isPartialResult {
                     if !previousOperationIsConstantOrUnary {
@@ -104,9 +112,11 @@ class CalculatorBrain {
                 }
                 executePendingBinaryOperation()
                 previousOperationIsConstantOrUnary = false
+                previousOperatorIsEqual = true
             case .Random:
                 accumulator = drand48()
                 previousOperationIsConstantOrUnary = false
+                previousOperatorIsEqual = false
             }
         }
     }
