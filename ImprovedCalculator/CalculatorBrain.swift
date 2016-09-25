@@ -80,7 +80,7 @@ class CalculatorBrain {
 
                 accumulator = constant
             case .Unary(let function):
-                description = symbol + String(accumulator)
+                description = symbol + "(" + String(accumulator) + ")"
                 accumulator = function(accumulator)
             case .Binary(let function):
                 description = getNumberString(number: accumulator) + symbol
