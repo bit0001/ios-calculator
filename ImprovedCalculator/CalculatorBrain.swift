@@ -80,41 +80,44 @@ class CalculatorBrain {
             switch operation {
             case .Constant(let constant):
                 description = isPartialResult ? description + symbol : symbol
+                
                 accumulator = constant
+
                 previousOperationIsConstantOrUnary = true
                 previousOperatorIsEqual = false
             case .Unary(let function):
-                if isPartialResult {
-                    description = description + symbol + getStringBetweenParenthesis(description: String(accumulator))
-                } else {
-                    description = symbol + getStringBetweenParenthesis(
+                
+                description = isPartialResult ?
+                    description + symbol + getStringBetweenParenthesis(description: String(accumulator)) :
+                    symbol + getStringBetweenParenthesis(
                         description: description == "" ? String(accumulator) : description)
-                }
+                
+                
                 accumulator = function(accumulator)
+
                 previousOperationIsConstantOrUnary = true
                 previousOperatorIsEqual = false
             case .Binary(let function):
-                if previousOperationIsConstantOrUnary || previousOperatorIsEqual {
-                    description += symbol
-                } else {
-                    description += getNumberString(number: accumulator) + symbol
-                }
+                description = previousOperationIsConstantOrUnary || previousOperatorIsEqual ?
+                    description + symbol : description + getNumberString(number: accumulator) + symbol
                 
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
+
                 previousOperationIsConstantOrUnary = false
                 previousOperatorIsEqual = false
             case .Equal:
-                if isPartialResult {
-                    if !previousOperationIsConstantOrUnary {
-                        description += getNumberString(number: accumulator)
-                    }
+                if isPartialResult && !previousOperationIsConstantOrUnary {
+                    description += getNumberString(number: accumulator)
                 }
+                
                 executePendingBinaryOperation()
+
                 previousOperationIsConstantOrUnary = false
                 previousOperatorIsEqual = true
             case .Random:
                 accumulator = drand48()
+
                 previousOperationIsConstantOrUnary = false
                 previousOperatorIsEqual = false
             }
