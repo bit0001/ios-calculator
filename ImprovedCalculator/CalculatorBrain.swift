@@ -80,12 +80,16 @@ class CalculatorBrain {
 
                 accumulator = constant
             case .Unary(let function):
-                description = symbol + getStringBetweenParenthesis(
-                    description: description == "" ? String(accumulator) : description)
+                if isPartialResult {
+                    description = description + symbol + getStringBetweenParenthesis(description: String(accumulator))
+                } else {
+                    description = symbol + getStringBetweenParenthesis(
+                        description: description == "" ? String(accumulator) : description)
+                }
 
                 accumulator = function(accumulator)
             case .Binary(let function):
-                description = getNumberString(number: accumulator) + symbol
+                description += getNumberString(number: accumulator) + symbol
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
             case .Equal:
