@@ -10,7 +10,7 @@ func factorial(number: Double) -> Double {
 class CalculatorBrain {
     
     private var accumulator = 0.0
-    private var previousOperationIsConstant = false
+    private var previousOperationIsConstantOrUnary = false
     
     var result: Double {
         return accumulator
@@ -73,13 +73,9 @@ class CalculatorBrain {
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let constant):
-                if isPartialResult {
-                    description += symbol
-                } else {
-                    description = symbol
-                }
+                description = isPartialResult ? description + symbol : symbol
                 accumulator = constant
-                previousOperationIsConstant = true
+                previousOperationIsConstantOrUnary = true
             case .Unary(let function):
                 if isPartialResult {
                     description = description + symbol + getStringBetweenParenthesis(description: String(accumulator))
@@ -89,9 +85,9 @@ class CalculatorBrain {
                 }
 
                 accumulator = function(accumulator)
-                previousOperationIsConstant = true
+                previousOperationIsConstantOrUnary = true
             case .Binary(let function):
-                if previousOperationIsConstant {
+                if previousOperationIsConstantOrUnary {
                     description += symbol
                 } else {
                     description += getNumberString(number: accumulator) + symbol
@@ -99,16 +95,18 @@ class CalculatorBrain {
                 
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
-                previousOperationIsConstant = false
+                previousOperationIsConstantOrUnary = false
             case .Equal:
                 if isPartialResult {
-                    description += getNumberString(number: accumulator)
+                    if !previousOperationIsConstantOrUnary {
+                        description += getNumberString(number: accumulator)
+                    }
                 }
                 executePendingBinaryOperation()
-                previousOperationIsConstant = false
+                previousOperationIsConstantOrUnary = false
             case .Random:
                 accumulator = drand48()
-                previousOperationIsConstant = false
+                previousOperationIsConstantOrUnary = false
             }
         }
     }
