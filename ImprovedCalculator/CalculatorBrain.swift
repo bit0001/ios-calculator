@@ -82,9 +82,6 @@ class CalculatorBrain {
                 description = isPartialResult ? description + symbol : symbol
                 
                 accumulator = constant
-
-                previousOperationIsConstantOrUnary = true
-                previousOperatorIsEqual = false
             case .Unary(let function):
                 
                 description = isPartialResult ?
@@ -94,33 +91,22 @@ class CalculatorBrain {
                 
                 
                 accumulator = function(accumulator)
-
-                previousOperationIsConstantOrUnary = true
-                previousOperatorIsEqual = false
             case .Binary(let function):
                 description = previousOperationIsConstantOrUnary || previousOperatorIsEqual ?
                     description + symbol : description + getNumberString(number: accumulator) + symbol
                 
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
-
-                previousOperationIsConstantOrUnary = false
-                previousOperatorIsEqual = false
             case .Equal:
                 if isPartialResult && !previousOperationIsConstantOrUnary {
                     description += getNumberString(number: accumulator)
                 }
                 
                 executePendingBinaryOperation()
-
-                previousOperationIsConstantOrUnary = false
-                previousOperatorIsEqual = true
             case .Random:
                 accumulator = drand48()
-
-                previousOperationIsConstantOrUnary = false
-                previousOperatorIsEqual = false
             }
+            updatePreviousOperationFlags(operation: operation)
         }
     }
     
@@ -143,6 +129,26 @@ class CalculatorBrain {
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.fistOperand, accumulator)
             pending = nil
+        }
+    }
+
+    private func updatePreviousOperationFlags(operation: Operator) {
+        switch operation {
+        case .Constant(_):
+            previousOperationIsConstantOrUnary = true
+            previousOperatorIsEqual = false
+        case .Unary(_):
+            previousOperationIsConstantOrUnary = true
+            previousOperatorIsEqual = false
+        case .Binary(_):
+            previousOperationIsConstantOrUnary = false
+            previousOperatorIsEqual = false
+        case .Equal:
+            previousOperationIsConstantOrUnary = false
+            previousOperatorIsEqual = true
+        case .Random:
+            previousOperationIsConstantOrUnary = false
+            previousOperatorIsEqual = false
         }
     }
 }
