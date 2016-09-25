@@ -8,20 +8,21 @@ func factorial(number: Double) -> Double {
 }
 
 class CalculatorBrain {
-    
+
     private var accumulator = 0.0
     private var previousOperationIsConstantOrUnary = false
     private var previousOperatorIsEqual = false
-    
+
     var result: Double {
         return accumulator
     }
+
     var description = ""
-    
+
     var isPartialResult: Bool {
         return pending != nil
     }
-    
+
     func setOperand(operand: Double) {
         if previousOperationIsConstantOrUnary || previousOperatorIsEqual {
             description = ""
@@ -30,7 +31,7 @@ class CalculatorBrain {
         }
         accumulator = operand
     }
-    
+
     private enum Operator {
         case Constant(Double)
         case Unary((Double) -> Double)
@@ -38,7 +39,7 @@ class CalculatorBrain {
         case Equal
         case Random
     }
-    
+
     private let operations = [
         "π": Operator.Constant(M_PI),
         "e": Operator.Constant(M_E),
@@ -67,14 +68,14 @@ class CalculatorBrain {
         "=": Operator.Equal,
         "rnd": Operator.Random
     ]
-    
+
     private struct PendingBinaryOperation {
         let binaryFunction: (Double, Double) -> Double
         let fistOperand: Double
     }
-    
+
     private var pending: PendingBinaryOperation?
-    
+
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
             description = updateDescription(symbol: symbol)
@@ -82,7 +83,7 @@ class CalculatorBrain {
             updatePreviousOperationFlags(operation: operation)
         }
     }
-    
+
     private func computeResult(operation: Operator) {
         switch operation {
         case .Constant(let constant):
@@ -98,7 +99,7 @@ class CalculatorBrain {
             accumulator = drand48()
         }
     }
-    
+
     private func updateDescription(symbol: String) -> String {
         let operation = operations[symbol]!
         switch operation {
@@ -119,11 +120,11 @@ class CalculatorBrain {
             return description
         }
     }
-    
+
     private func getStringBetweenParenthesis(description: String) -> String {
         return "(" + description + ")"
     }
-    
+
     private func getNumberString(number: Double) -> String {
         switch number {
         case M_PI:
@@ -137,14 +138,14 @@ class CalculatorBrain {
             return formatter.string(from: number as NSNumber)!
         }
     }
-    
+
     private func executePendingBinaryOperation() {
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.fistOperand, accumulator)
             pending = nil
         }
     }
-    
+
     private func updatePreviousOperationFlags(operation: Operator) {
         switch operation {
         case .Constant(_):
