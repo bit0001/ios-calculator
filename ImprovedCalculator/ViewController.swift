@@ -102,6 +102,20 @@ class ViewController: UIViewController {
             cube.setTitle("∛", for: .normal)
         }
     }
+    
+    
+    @IBAction func deleteDigit() {
+        var currentText = display.text!
+        let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
+        currentText.removeSubrange(range)
+
+        if currentText == "" {
+            display.text = "0"
+            isUserInMiddleOfTyping = false
+        } else {
+            display.text = currentText
+        }
+    }
 
 }
 

@@ -255,6 +255,9 @@
                                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="del"/>
+                                                        <connections>
+                                                            <action selector="deleteDigit" destination="BYZ-38-t0r" eventType="touchUpInside" id="3p2-0s-k5h"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
