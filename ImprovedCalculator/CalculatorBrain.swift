@@ -77,31 +77,16 @@ class CalculatorBrain {
     
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
+            description = updateDescription(symbol: symbol)
             switch operation {
             case .Constant(let constant):
-                description = isPartialResult ? description + symbol : symbol
-                
                 accumulator = constant
             case .Unary(let function):
-                
-                description = isPartialResult ?
-                    description + symbol + getStringBetweenParenthesis(description: String(accumulator)) :
-                    symbol + getStringBetweenParenthesis(
-                        description: description == "" ? String(accumulator) : description)
-                
-                
                 accumulator = function(accumulator)
             case .Binary(let function):
-                description = previousOperationIsConstantOrUnary || previousOperatorIsEqual ?
-                    description + symbol : description + getNumberString(number: accumulator) + symbol
-                
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
             case .Equal:
-                if isPartialResult && !previousOperationIsConstantOrUnary {
-                    description += getNumberString(number: accumulator)
-                }
-                
                 executePendingBinaryOperation()
             case .Random:
                 accumulator = drand48()
@@ -109,7 +94,28 @@ class CalculatorBrain {
             updatePreviousOperationFlags(operation: operation)
         }
     }
-    
+
+    private func updateDescription(symbol: String) -> String {
+        let operation = operations[symbol]!
+        switch operation {
+        case .Constant(_):
+            return (isPartialResult ? description + symbol : symbol)
+        case .Unary(_):
+            return (isPartialResult ?
+                description + symbol + getStringBetweenParenthesis(description: String(accumulator)) :
+                symbol + getStringBetweenParenthesis(
+                    description: description == "" ? String(accumulator) : description))
+        case .Binary(_):
+            return (previousOperationIsConstantOrUnary || previousOperatorIsEqual ?
+                description + symbol : description + getNumberString(number: accumulator) + symbol)
+        case .Equal:
+            return (isPartialResult && !previousOperationIsConstantOrUnary ?
+                description + getNumberString(number: accumulator) : description)
+        default:
+            return description
+        }
+    }
+
     private func getStringBetweenParenthesis(description: String) -> String {
         return "(" + description + ")"
     }
