@@ -69,7 +69,7 @@ class ViewController: UIViewController {
             brain.setOperand(operand: displayedValue)
             isUserInMiddleOfTyping = false
         }
-        
+
         brain.performOperation(symbol: symbol)
         displayedValue = brain.result
         
