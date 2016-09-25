@@ -87,6 +87,9 @@ class CalculatorBrain {
                 executePendingBinaryOperation()
                 pending = PendingBinaryOperation(binaryFunction: function, fistOperand: accumulator)
             case .Equal:
+                if pending != nil {
+                    description += getNumberString(number: accumulator)
+                }
                 executePendingBinaryOperation()
             case .Random:
                 accumulator = drand48()
