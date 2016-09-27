@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet private weak var tan: UIButton!
     @IBOutlet weak var square: UIButton!
     @IBOutlet weak var cube: UIButton!
+    @IBOutlet weak var logarithm: UIButton!
     
     
     private var displayedValue: Double {
@@ -86,6 +87,7 @@ class ViewController: UIViewController {
             tan.setTitle("tan⁻¹", for: .normal)
             square.setTitle("x²", for: .normal)
             cube.setTitle("x³", for: .normal)
+            logarithm.setTitle("log", for: .normal)
         } else {
             sender.backgroundColor = UIColor(red: CGFloat(127.0 / 255.0), green: CGFloat(127.0 / 255.0), blue: CGFloat(127.0 / 255.0), alpha: 1)
             sin.setTitle("sin", for: .normal)
@@ -93,6 +95,7 @@ class ViewController: UIViewController {
             tan.setTitle("tan", for: .normal)
             square.setTitle("√", for: .normal)
             cube.setTitle("∛", for: .normal)
+            logarithm.setTitle("ln", for: .normal)
         }
     }
     

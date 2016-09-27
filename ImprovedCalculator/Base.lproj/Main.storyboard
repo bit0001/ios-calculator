@@ -230,7 +230,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxA-fr-9sG">
                                                         <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <state key="normal" title="log"/>
+                                                        <state key="normal" title="save"/>
                                                         <connections>
                                                             <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RtK-uD-F6O"/>
                                                         </connections>
@@ -367,6 +367,7 @@
                         <outlet property="cube" destination="9Kz-3c-gI5" id="StQ-AC-czy"/>
                         <outlet property="display" destination="Osr-Yf-OMG" id="wUG-Rw-XsG"/>
                         <outlet property="expressionDescription" destination="SHw-3F-hQy" id="whO-Cn-YP8"/>
+                        <outlet property="logarithm" destination="9Qg-p8-0w2" id="72o-km-pTl"/>
                         <outlet property="sin" destination="upa-Rw-7YD" id="cbv-tq-6Pi"/>
                         <outlet property="square" destination="l1o-zl-JaI" id="Ibi-Ee-AOS"/>
                         <outlet property="tan" destination="6dg-Xc-F3B" id="SEX-c3-gvf"/>
