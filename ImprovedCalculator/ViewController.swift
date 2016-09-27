@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var square: UIButton!
     @IBOutlet weak var cube: UIButton!
     @IBOutlet weak var logarithm: UIButton!
+    @IBOutlet weak var saveRestore: UIButton!
     
     
     private var displayedValue: Double {
@@ -88,6 +89,7 @@ class ViewController: UIViewController {
             square.setTitle("x²", for: .normal)
             cube.setTitle("x³", for: .normal)
             logarithm.setTitle("log", for: .normal)
+            saveRestore.setTitle("rstor", for: .normal)
         } else {
             sender.backgroundColor = UIColor(red: CGFloat(127.0 / 255.0), green: CGFloat(127.0 / 255.0), blue: CGFloat(127.0 / 255.0), alpha: 1)
             sin.setTitle("sin", for: .normal)
@@ -96,6 +98,23 @@ class ViewController: UIViewController {
             square.setTitle("√", for: .normal)
             cube.setTitle("∛", for: .normal)
             logarithm.setTitle("ln", for: .normal)
+            saveRestore.setTitle("save", for: .normal)
+        }
+    }
+    
+    var savedProgram: CalculatorBrain.PropertyList?
+    
+    @IBAction func saveOrRestore(_ sender: UIButton) {
+        if let text = sender.currentTitle {
+            if text == "save" {
+                savedProgram = brain.program
+            } else if text == "rstor" {
+                if savedProgram != nil {
+                    brain.program = savedProgram!
+                    display.text = CalculationFormater().formatNumber(number: brain.result)
+                    expressionDescription.text = brain.description + ( brain.isPartialResult ? "..." : "=")
+                }
+            }
         }
     }
     

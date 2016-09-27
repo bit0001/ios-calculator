@@ -10,6 +10,7 @@ func factorial(number: Double) -> Double {
 class CalculatorBrain {
 
     private var accumulator = 0.0
+    private var internalProgram = [AnyObject]()
     private var previousOperationIsConstantOrUnary = false
     private var previousOperatorIsEqual = false
 
@@ -30,6 +31,7 @@ class CalculatorBrain {
             previousOperatorIsEqual = false
         }
         accumulator = operand
+        internalProgram.append(operand as AnyObject)
     }
 
     private enum Operator {
@@ -77,6 +79,7 @@ class CalculatorBrain {
     private var pending: PendingBinaryOperation?
 
     func performOperation(symbol: String) {
+        internalProgram.append(symbol as AnyObject)
         if let operation = operations[symbol] {
             description = updateDescription(symbol: symbol)
             computeResult(operation: operation)
@@ -162,6 +165,34 @@ class CalculatorBrain {
             previousOperatorIsEqual = false
         }
     }
+    
+    typealias PropertyList = AnyObject
+    
+    var program: PropertyList {
+        get {
+            return internalProgram as CalculatorBrain.PropertyList
+        }
+        
+        set {
+            clear()
+            if let arrayOfOps = newValue as? [AnyObject] {
+                for op in arrayOfOps {
+                    if let operand = op as? Double {
+                        setOperand(operand: operand)
+                    } else if let operation = op as? String {
+                        performOperation(symbol: operation)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func clear() {
+        accumulator = 0.0
+        pending = nil
+        internalProgram.removeAll()
+    }
+    
 }
 
 class CalculationFormater {

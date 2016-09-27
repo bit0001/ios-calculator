@@ -232,7 +232,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <state key="normal" title="save"/>
                                                         <connections>
-                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RtK-uD-F6O"/>
+                                                            <action selector="saveOrRestore:" destination="BYZ-38-t0r" eventType="touchUpInside" id="q8R-Q0-8Ph"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oa2-xm-YFG">
@@ -368,6 +368,7 @@
                         <outlet property="display" destination="Osr-Yf-OMG" id="wUG-Rw-XsG"/>
                         <outlet property="expressionDescription" destination="SHw-3F-hQy" id="whO-Cn-YP8"/>
                         <outlet property="logarithm" destination="9Qg-p8-0w2" id="72o-km-pTl"/>
+                        <outlet property="saveRestore" destination="fxA-fr-9sG" id="g0T-VR-qAe"/>
                         <outlet property="sin" destination="upa-Rw-7YD" id="cbv-tq-6Pi"/>
                         <outlet property="square" destination="l1o-zl-JaI" id="Ibi-Ee-AOS"/>
                         <outlet property="tan" destination="6dg-Xc-F3B" id="SEX-c3-gvf"/>
