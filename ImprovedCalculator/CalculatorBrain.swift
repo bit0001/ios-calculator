@@ -132,10 +132,7 @@ class CalculatorBrain {
         case M_E:
             return "e"
         default:
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.maximumFractionDigits = 6
-            return formatter.string(from: number as NSNumber)!
+            return CalculationFormater().formatNumber(number: number)
         }
     }
 
@@ -164,5 +161,14 @@ class CalculatorBrain {
             previousOperationIsConstantOrUnary = false
             previousOperatorIsEqual = false
         }
+    }
+}
+
+class CalculationFormater {
+    func formatNumber(number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 6
+        return formatter.string(from: number as NSNumber)!
     }
 }

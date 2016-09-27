@@ -28,10 +28,7 @@ class ViewController: UIViewController {
         }
 
         set {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            formatter.maximumFractionDigits = 6
-            display.text = formatter.string(from: newValue as NSNumber)
+            display.text = CalculationFormater().formatNumber(number: newValue)
             expressionDescription.text = brain.description + ( brain.isPartialResult ? "..." : "=")
         }
     }
@@ -114,4 +111,3 @@ class ViewController: UIViewController {
     }
 
 }
-
