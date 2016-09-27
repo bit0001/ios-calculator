@@ -50,11 +50,7 @@ class ViewController: UIViewController {
             let currentDisplayedData = display.text!
             display.text = currentDisplayedData + character
         } else {
-            if character == "." {
-                display.text = "0" + character
-            } else {
-                display.text = character
-            }
+            display.text = character == "." ? "0" + character : character
         }
         
         isUserInMiddleOfTyping = true
