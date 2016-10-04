@@ -93,23 +93,20 @@ class ViewController: UIViewController {
             cube.setTitle("∛", for: .normal)
         }
     }
-    
+
     var savedProgram: CalculatorBrain.PropertyList?
     
-    @IBAction func saveOrRestore(_ sender: UIButton) {
-        if let text = sender.currentTitle {
-            if text == "save" {
-                savedProgram = brain.program
-            } else if text == "rstor" {
-                if savedProgram != nil {
-                    brain.program = savedProgram!
-                    display.text = CalculationFormater().formatNumber(number: brain.result)
-                    expressionDescription.text = brain.description + ( brain.isPartialResult ? "..." : "=")
-                }
-            }
+    @IBAction func save() {
+        savedProgram = brain.program
+    }
+
+    @IBAction func restore() {
+        if savedProgram != nil {
+            brain.program = savedProgram!
+            display.text = CalculationFormater().formatNumber(number: brain.result)
+            expressionDescription.text = brain.description + ( brain.isPartialResult ? "..." : "=")
         }
     }
-    
     
     @IBAction func deleteDigit() {
         var currentText = display.text!
