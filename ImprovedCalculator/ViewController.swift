@@ -9,21 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     private var isShiftPressed = false
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
+    @IBOutlet private weak var display: UILabel!
     @IBOutlet weak var expressionDescription: UILabel!
-    
+
     @IBOutlet private weak var sin: UIButton!
     @IBOutlet private weak var cos: UIButton!
     @IBOutlet private weak var tan: UIButton!
     @IBOutlet weak var square: UIButton!
     @IBOutlet weak var cube: UIButton!
-    @IBOutlet weak var logarithm: UIButton!
-    @IBOutlet weak var saveRestore: UIButton!
     
-    
+
     private var displayedValue: Double {
         get {
             return Double(display.text!)!
@@ -34,10 +33,7 @@ class ViewController: UIViewController {
             expressionDescription.text = brain.description + ( brain.isPartialResult ? "..." : "=")
         }
     }
-    
-    @IBOutlet private weak var display: UILabel!
-    
-    
+
     @IBAction private func touchButton(_ sender: UIButton) {
         let character = sender.currentTitle!
         
@@ -88,8 +84,6 @@ class ViewController: UIViewController {
             tan.setTitle("tan⁻¹", for: .normal)
             square.setTitle("x²", for: .normal)
             cube.setTitle("x³", for: .normal)
-            logarithm.setTitle("log", for: .normal)
-            saveRestore.setTitle("rstor", for: .normal)
         } else {
             sender.backgroundColor = UIColor(red: CGFloat(127.0 / 255.0), green: CGFloat(127.0 / 255.0), blue: CGFloat(127.0 / 255.0), alpha: 1)
             sin.setTitle("sin", for: .normal)
@@ -97,8 +91,6 @@ class ViewController: UIViewController {
             tan.setTitle("tan", for: .normal)
             square.setTitle("√", for: .normal)
             cube.setTitle("∛", for: .normal)
-            logarithm.setTitle("ln", for: .normal)
-            saveRestore.setTitle("save", for: .normal)
         }
     }
     
