@@ -51,14 +51,14 @@ class CalculatorBrain {
     private let operations = [
         "π": Operator.Constant(M_PI),
         "e": Operator.Constant(M_E),
-        "-": Operator.Unary({ -1 * $0 }),
+        "+/-": Operator.Unary({ -1 * $0 }),
         "√": Operator.Unary(sqrt),
         "∛": Operator.Unary({ pow($0, 1.0 / 3.0) }),
         "x⁻¹": Operator.Unary({ 1 / $0 }),
         "x²": Operator.Unary({ $0 * $0}),
         "x³": Operator.Unary({ pow($0, 3) }),
-        "10^x": Operator.Unary({ pow(10, $0) }),
-        "e^x": Operator.Unary({ pow(M_E, $0) }),
+        "10ˣ": Operator.Unary({ pow(10, $0) }),
+        "eˣ": Operator.Unary({ pow(M_E, $0) }),
         "ln": Operator.Unary(log),
         "log": Operator.Unary(log10),
         "sin": Operator.Unary(sin),
@@ -67,14 +67,13 @@ class CalculatorBrain {
         "sin⁻¹": Operator.Unary(asin),
         "cos⁻¹": Operator.Unary(acos),
         "tan⁻¹": Operator.Unary(atan),
-        "x!": Operator.Unary(factorial),
         "×": Operator.Binary(*),
         "÷": Operator.Binary(/),
         "+": Operator.Binary(+),
         "−": Operator.Binary(-),
-        "x^y": Operator.Binary({ pow($0, $1) }),
-        "=": Operator.Equal,
-        "rnd": Operator.Random
+        "xʸ": Operator.Binary({ pow($0, $1) }),
+        "rand": Operator.Random,
+        "=": Operator.Equal
     ]
 
     private struct PendingBinaryOperation {
