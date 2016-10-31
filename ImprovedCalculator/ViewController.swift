@@ -9,36 +9,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
     @IBOutlet private weak var resultDisplay: UILabel!
     @IBOutlet weak var descriptionDisplay: UILabel!
     
-
     private var displayedValue: Double {
         get {
             return Double(resultDisplay.text!)!
         }
-
+        
         set {
             resultDisplay.text = CalculationFormater().formatNumber(number: newValue)
             descriptionDisplay.text = brain.description + ( brain.isPartialResult ? "..." : "=")
         }
     }
-
+    
     @IBAction private func touchDigit(_ sender: UIButton) {
         let character = sender.currentTitle!
         
         if isUserInMiddleOfTyping {
-            guard character != "." || !isPointInDisplayedData() else {
-                return
-            }
-            
             let currentDisplayedData = resultDisplay.text!
             resultDisplay.text = currentDisplayedData + character
         } else {
-            resultDisplay.text = character == "." ? "0" + character : character
+            resultDisplay.text = character
         }
         
         isUserInMiddleOfTyping = true
@@ -55,10 +50,20 @@ class ViewController: UIViewController {
             brain.setOperand(operand: displayedValue)
             isUserInMiddleOfTyping = false
         }
-
+        
         brain.performOperation(symbol: symbol)
         displayedValue = brain.result
-        
+    }
+    
+    @IBAction func addDecimalPoint() {
+        if (isUserInMiddleOfTyping) {
+            if (!resultDisplay.text!.contains(".")) {
+                resultDisplay.text = resultDisplay.text! +  "."
+            }
+        } else {
+            resultDisplay.text = "0."
+        }
+        isUserInMiddleOfTyping = true
     }
     
     @IBAction private func clearEverything() {
@@ -72,7 +77,7 @@ class ViewController: UIViewController {
         var currentText = resultDisplay.text!
         let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
         currentText.removeSubrange(range)
-
+        
         if currentText == "" {
             resultDisplay.text = "0"
             isUserInMiddleOfTyping = false
@@ -80,5 +85,5 @@ class ViewController: UIViewController {
             resultDisplay.text = currentText
         }
     }
-
+    
 }

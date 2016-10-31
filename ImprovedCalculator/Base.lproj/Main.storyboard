@@ -442,6 +442,9 @@
                                                                 <state key="normal" title=".">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="addDecimalPoint" destination="ejF-9v-RbS" eventType="touchUpInside" id="wee-zz-V9d"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ubs-BB-z38">
                                                                 <rect key="frame" x="212" y="0.0" width="60.5" height="62.5"/>
