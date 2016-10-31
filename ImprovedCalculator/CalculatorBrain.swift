@@ -4,8 +4,8 @@ import Foundation
 class CalculatorBrain {
 
     private var accumulator = 0.0
-    private var previousOperationIsConstantOrUnary = false
-    private var previousOperatorIsEqual = false
+    private var previousAppend: String?
+    private var baseDescription: String?
 
     var result: Double {
         return accumulator
@@ -18,12 +18,11 @@ class CalculatorBrain {
     }
 
     func setOperand(operand: Double) {
-        if previousOperationIsConstantOrUnary || previousOperatorIsEqual {
-            description = ""
-            previousOperationIsConstantOrUnary = false
-            previousOperatorIsEqual = false
-        }
         accumulator = operand
+        
+        if !isPartialResult {
+            description = ""
+        }
     }
     
     var variableValues: Dictionary<String, Double>!
@@ -73,9 +72,8 @@ class CalculatorBrain {
 
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
-            description = updateDescription(symbol: symbol)
+            updateDescription(symbol: symbol)
             computeResult(operation: operation)
-            updatePreviousOperationFlags(operation: operation)
         }
     }
 
@@ -95,24 +93,52 @@ class CalculatorBrain {
         }
     }
 
-    private func updateDescription(symbol: String) -> String {
+    private func updateDescription(symbol: String) {
         let operation = operations[symbol]!
         switch operation {
-        case .Constant(_):
-            return (isPartialResult ? description + symbol : symbol)
         case .Unary(_):
-            return (isPartialResult ?
-                description + symbol + getStringBetweenParenthesis(description: String(accumulator)) :
-                symbol + getStringBetweenParenthesis(
-                    description: description == "" ? String(accumulator) : description))
+            if isPartialResult {
+                if let prevAppend = previousAppend  {
+                    previousAppend = symbol + "(" + prevAppend + ")";
+                    description = baseDescription! + previousAppend!;
+                } else {
+                    baseDescription = description;
+                    previousAppend = symbol + "(" + getNumberString(number: accumulator) + ")";
+                    description += previousAppend!;
+                }
+            } else {
+                if description == "" {
+                    description = symbol + "(" + getNumberString(number: accumulator) + ")";
+                } else {
+                    description = symbol + "(" + description + ")";
+                }
+            }
         case .Binary(_):
-            return (previousOperationIsConstantOrUnary || previousOperatorIsEqual ?
-                description + symbol : description + getNumberString(number: accumulator) + symbol)
+            if isPartialResult {
+                if previousAppend == nil {
+                    description += getNumberString(number: accumulator) + symbol;
+                } else {
+                    description += symbol;
+                    previousAppend = nil;
+                }
+            } else {
+                if description == "" {
+                    description = getNumberString(number: accumulator) + symbol;
+                } else {
+                    description += symbol;
+                }
+            }
         case .Equal:
-            return (isPartialResult && !previousOperationIsConstantOrUnary ?
-                description + getNumberString(number: accumulator) : description)
+            if (!isPartialResult) {
+                return;
+            }
+            
+            if (previousAppend == nil) {
+                description += getNumberString(number: accumulator);
+            }
+            previousAppend = nil;
         default:
-            return description
+            break
         }
     }
 
@@ -138,24 +164,4 @@ class CalculatorBrain {
         }
     }
 
-    private func updatePreviousOperationFlags(operation: Operator) {
-        switch operation {
-        case .Constant(_):
-            previousOperationIsConstantOrUnary = true
-            previousOperatorIsEqual = false
-        case .Unary(_):
-            previousOperationIsConstantOrUnary = true
-            previousOperatorIsEqual = false
-        case .Binary(_):
-            previousOperationIsConstantOrUnary = false
-            previousOperatorIsEqual = false
-        case .Equal:
-            previousOperationIsConstantOrUnary = false
-            previousOperatorIsEqual = true
-        case .Random:
-            previousOperationIsConstantOrUnary = false
-            previousOperatorIsEqual = false
-        }
-    }
-    
 }
