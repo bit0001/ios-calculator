@@ -203,6 +203,9 @@
                                                                 <state key="normal" title="7">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="oJf-Vw-w2b"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i02-0c-cKj">
                                                                 <rect key="frame" x="141" y="0.0" width="61" height="62"/>
@@ -211,6 +214,9 @@
                                                                 <state key="normal" title="8">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="bbx-7t-9Ll"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbQ-OS-isd">
                                                                 <rect key="frame" x="212" y="0.0" width="60.5" height="62"/>
@@ -219,6 +225,9 @@
                                                                 <state key="normal" title="9">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="b9n-5a-htf"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TyU-MV-0H5">
                                                                 <rect key="frame" x="282.5" y="0.0" width="60.5" height="62"/>
@@ -248,6 +257,9 @@
                                                                 <state key="normal" title="4">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="bN1-Fd-azf"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSe-Qp-S7c">
                                                                 <rect key="frame" x="141" y="0.0" width="61" height="62.5"/>
@@ -256,6 +268,9 @@
                                                                 <state key="normal" title="5">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="NaY-fE-ZEa"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wvf-Hy-QgW">
                                                                 <rect key="frame" x="212" y="0.0" width="60.5" height="62.5"/>
@@ -264,6 +279,9 @@
                                                                 <state key="normal" title="6">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="d6s-DC-5Wv"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBY-FY-urU">
                                                                 <rect key="frame" x="282.5" y="0.0" width="60.5" height="62.5"/>
@@ -293,6 +311,9 @@
                                                                 <state key="normal" title="1">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="4aq-if-nyc"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdn-ss-Mcj">
                                                                 <rect key="frame" x="141" y="0.0" width="61" height="62"/>
@@ -301,6 +322,9 @@
                                                                 <state key="normal" title="2">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="VKX-F5-eC1"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAT-VS-eCS">
                                                                 <rect key="frame" x="212" y="0.0" width="60.5" height="62"/>
@@ -309,6 +333,9 @@
                                                                 <state key="normal" title="3">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="kvg-ej-bQw"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4s0-OX-M90">
                                                                 <rect key="frame" x="282.5" y="0.0" width="60.5" height="62"/>
@@ -338,6 +365,9 @@
                                                                 <state key="normal" title="0">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="touchDigit:" destination="ejF-9v-RbS" eventType="touchUpInside" id="Af0-wx-H7R"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEe-Mu-jcV">
                                                                 <rect key="frame" x="141" y="0.0" width="61" height="62.5"/>
