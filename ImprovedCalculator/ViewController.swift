@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
     @IBOutlet private weak var resultDisplay: UILabel!
-    @IBOutlet weak var descriptionDisplay: UILabel!
+    @IBOutlet private weak var descriptionDisplay: UILabel!
     
     private var displayedValue: Double {
         get {
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         displayedValue = brain.result
     }
     
-    @IBAction func addDecimalPoint() {
+    @IBAction private func addDecimalPoint() {
         if (isUserInMiddleOfTyping) {
             if (!resultDisplay.text!.contains(".")) {
                 resultDisplay.text = resultDisplay.text! +  "."
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         isUserInMiddleOfTyping = false
     }
     
-    @IBAction func deleteDigit() {
+    @IBAction private func deleteDigit() {
         var currentText = resultDisplay.text!
         let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
         currentText.removeSubrange(range)
