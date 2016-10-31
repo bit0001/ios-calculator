@@ -24,8 +24,6 @@ class CalculatorBrain {
             description = ""
         }
     }
-    
-    var variableValues: Dictionary<String, Double>!
 
     private enum Operator {
         case Constant(Double)
