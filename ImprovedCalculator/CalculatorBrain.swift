@@ -1,11 +1,5 @@
 import Foundation
 
-func factorial(number: Double) -> Double {
-    if number == 0.0 || number == 1.0 {
-        return 1.0
-    }
-    return factorial(number: number - 1.0)
-}
 
 class CalculatorBrain {
 
@@ -198,13 +192,4 @@ class CalculatorBrain {
         internalProgram.removeAll()
     }
     
-}
-
-class CalculationFormater {
-    func formatNumber(number: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 6
-        return formatter.string(from: number as NSNumber)!
-    }
 }
