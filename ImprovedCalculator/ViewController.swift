@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction private func clearEverything(_ sender: AnyObject) {
+    @IBAction private func clearEverything() {
         resultDisplay.text = "0"
         descriptionDisplay.text = "0"
         brain = CalculatorBrain()
