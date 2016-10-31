@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private var isShiftPressed = false
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
     @IBOutlet private weak var display: UILabel!
@@ -73,25 +72,6 @@ class ViewController: UIViewController {
         expressionDescription.text = "0"
         brain = CalculatorBrain()
         isUserInMiddleOfTyping = false
-    }
-    
-    @IBAction func shift(_ sender: UIButton) {
-        isShiftPressed = !isShiftPressed
-        if isShiftPressed {
-            sender.backgroundColor = UIColor(red: CGFloat(175.0 / 255.0), green: CGFloat(128.0 / 255.0), blue: CGFloat(229.0 / 255.0), alpha: 1)
-            sin.setTitle("sin⁻¹", for: .normal)
-            cos.setTitle("cos⁻¹", for: .normal)
-            tan.setTitle("tan⁻¹", for: .normal)
-            square.setTitle("x²", for: .normal)
-            cube.setTitle("x³", for: .normal)
-        } else {
-            sender.backgroundColor = UIColor(red: CGFloat(127.0 / 255.0), green: CGFloat(127.0 / 255.0), blue: CGFloat(127.0 / 255.0), alpha: 1)
-            sin.setTitle("sin", for: .normal)
-            cos.setTitle("cos", for: .normal)
-            tan.setTitle("tan", for: .normal)
-            square.setTitle("√", for: .normal)
-            cube.setTitle("∛", for: .normal)
-        }
     }
     
     @IBAction func deleteDigit() {
