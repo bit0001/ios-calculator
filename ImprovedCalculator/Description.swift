@@ -49,10 +49,10 @@ class Description {
                 }
             }
         case .Equal:
-            if (!isPartialResult) {
-                return;
+            guard isPartialResult else {
+                break;
             }
-            
+
             if (previousAppend == nil) {
                 description += getNumberString(number: accumulator);
             }
