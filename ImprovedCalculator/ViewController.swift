@@ -28,13 +28,7 @@ class ViewController: UIViewController {
     
     @IBAction private func touchDigit(_ sender: UIButton) {
         let character = sender.currentTitle!
-        
-        if isUserInMiddleOfTyping {
-            resultDisplay.text = getCurrentDisplayedData() + character
-        } else {
-            resultDisplay.text = character
-        }
-        
+        resultDisplay.text = isUserInMiddleOfTyping ? getCurrentDisplayedData() + character : character
         isUserInMiddleOfTyping = true
     }
     
