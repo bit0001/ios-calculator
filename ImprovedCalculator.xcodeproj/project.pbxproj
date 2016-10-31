@@ -15,6 +15,7 @@
 		CE6CC9591D95C514007EFACE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6CC9571D95C514007EFACE /* LaunchScreen.storyboard */; };
 		CE6CC9621D95CC31007EFACE /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6CC9611D95CC31007EFACE /* CalculatorBrain.swift */; };
 		CE88B2591DC7D8DF007B345A /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88B2581DC7D8DF007B345A /* Description.swift */; };
+		CE88B25B1DC7D98F007B345A /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE88B25A1DC7D98F007B345A /* Operation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CE6CC95A1D95C514007EFACE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE6CC9611D95CC31007EFACE /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 		CE88B2581DC7D8DF007B345A /* Description.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Description.swift; sourceTree = "<group>"; };
+		CE88B25A1DC7D98F007B345A /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +63,11 @@
 			isa = PBXGroup;
 			children = (
 				CE6CC9501D95C514007EFACE /* ViewController.swift */,
-				CE6CC9521D95C514007EFACE /* Main.storyboard */,
 				CE6CC9611D95CC31007EFACE /* CalculatorBrain.swift */,
 				CE0D4CD71DC7046B00CB47A0 /* Formatter.swift */,
 				CE88B2581DC7D8DF007B345A /* Description.swift */,
+				CE88B25A1DC7D98F007B345A /* Operation.swift */,
+				CE6CC9521D95C514007EFACE /* Main.storyboard */,
 				CE6CC9601D95C540007EFACE /* Supporting Files */,
 			);
 			path = ImprovedCalculator;
@@ -158,6 +161,7 @@
 				CE88B2591DC7D8DF007B345A /* Description.swift in Sources */,
 				CE0D4CD81DC7046B00CB47A0 /* Formatter.swift in Sources */,
 				CE6CC94F1D95C514007EFACE /* AppDelegate.swift in Sources */,
+				CE88B25B1DC7D98F007B345A /* Operation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
