@@ -20,7 +20,7 @@ class Description {
             if isPartialResult {
                 if let prevAppend = previousAppend {
                     previousAppend = symbol +  betweenParentheses(description: prevAppend)
-                    description = baseDescription! + previousAppend!
+                    description = baseDescription! + prevAppend
                 } else {
                     baseDescription = description
                     previousAppend = symbol + betweenParentheses(description: getNumberString(number: accumulator))
