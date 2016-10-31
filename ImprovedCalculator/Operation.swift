@@ -16,6 +16,11 @@ enum Operator {
     case Random
 }
 
+struct PendingBinaryOperation {
+    let binaryFunction: (Double, Double) -> Double
+    let fistOperand: Double
+}
+
 let operations = [
     "π": Operator.Constant(M_PI),
     "e": Operator.Constant(M_E),

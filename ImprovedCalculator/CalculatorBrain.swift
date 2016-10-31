@@ -5,7 +5,8 @@ class CalculatorBrain {
 
     private var accumulator = 0.0
     private var operationDescription = Description()
-    
+    private var pending: PendingBinaryOperation?
+
     var description: String {
         return operationDescription.description
     }
@@ -25,13 +26,6 @@ class CalculatorBrain {
             operationDescription = Description()
         }
     }
-
-    private struct PendingBinaryOperation {
-        let binaryFunction: (Double, Double) -> Double
-        let fistOperand: Double
-    }
-
-    private var pending: PendingBinaryOperation?
 
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
