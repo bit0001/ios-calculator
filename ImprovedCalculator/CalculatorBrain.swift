@@ -29,10 +29,6 @@ class CalculatorBrain {
     }
     
     var variableValues: Dictionary<String, Double>!
-    
-    func setOperand(variableName: String) {
-        
-    }
 
     private enum Operator {
         case Constant(Double)
