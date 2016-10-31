@@ -56,7 +56,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="etE-GP-kHd">
                                                                 <rect key="frame" x="0.0" y="0.0" width="60.5" height="62.5"/>
                                                                 <color key="backgroundColor" red="0.99215686274509807" green="0.53333333333333333" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                                 <state key="normal" title="rand">
                                                                     <color key="titleColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
