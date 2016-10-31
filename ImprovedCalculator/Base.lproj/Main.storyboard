@@ -40,6 +40,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionDisplay" destination="O0d-fw-1al" id="Inc-VC-EgV"/>
+                        <outlet property="resultDisplay" destination="LGx-Q6-8j5" id="GQG-W8-1VH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qS-FA-IhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

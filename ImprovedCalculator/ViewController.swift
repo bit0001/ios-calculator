@@ -12,24 +12,18 @@ class ViewController: UIViewController {
 
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
-    @IBOutlet private weak var result_display: UILabel!
-    @IBOutlet weak var expressionDescription: UILabel!
-
-    @IBOutlet private weak var sin: UIButton!
-    @IBOutlet private weak var cos: UIButton!
-    @IBOutlet private weak var tan: UIButton!
-    @IBOutlet weak var square: UIButton!
-    @IBOutlet weak var cube: UIButton!
+    @IBOutlet private weak var resultDisplay: UILabel!
+    @IBOutlet weak var descriptionDisplay: UILabel!
     
 
     private var displayedValue: Double {
         get {
-            return Double(result_display.text!)!
+            return Double(resultDisplay.text!)!
         }
 
         set {
-            result_display.text = CalculationFormater().formatNumber(number: newValue)
-            expressionDescription.text = brain.description + ( brain.isPartialResult ? "..." : "=")
+            resultDisplay.text = CalculationFormater().formatNumber(number: newValue)
+            descriptionDisplay.text = brain.description + ( brain.isPartialResult ? "..." : "=")
         }
     }
 
@@ -41,17 +35,17 @@ class ViewController: UIViewController {
                 return
             }
             
-            let currentDisplayedData = result_display.text!
-            result_display.text = currentDisplayedData + character
+            let currentDisplayedData = resultDisplay.text!
+            resultDisplay.text = currentDisplayedData + character
         } else {
-            result_display.text = character == "." ? "0" + character : character
+            resultDisplay.text = character == "." ? "0" + character : character
         }
         
         isUserInMiddleOfTyping = true
     }
     
     private func isPointInDisplayedData() -> Bool {
-        return result_display.text!.range(of: ".") != nil
+        return resultDisplay.text!.range(of: ".") != nil
     }
     
     @IBAction private func performOperation(_ sender: UIButton) {
@@ -68,22 +62,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func clearEverything(_ sender: AnyObject) {
-        result_display.text = "0"
-        expressionDescription.text = "0"
+        resultDisplay.text = "0"
+        descriptionDisplay.text = "0"
         brain = CalculatorBrain()
         isUserInMiddleOfTyping = false
     }
     
     @IBAction func deleteDigit() {
-        var currentText = result_display.text!
+        var currentText = resultDisplay.text!
         let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
         currentText.removeSubrange(range)
 
         if currentText == "" {
-            result_display.text = "0"
+            resultDisplay.text = "0"
             isUserInMiddleOfTyping = false
         } else {
-            result_display.text = currentText
+            resultDisplay.text = currentText
         }
     }
 
