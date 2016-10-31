@@ -89,7 +89,7 @@
                                                                 <rect key="frame" x="282.5" y="0.0" width="60.5" height="62.5"/>
                                                                 <color key="backgroundColor" red="0.9882352941176471" green="0.27450980392156865" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <state key="normal" title="0">
+                                                                <state key="normal" title="C">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
                                                             </button>
@@ -134,7 +134,7 @@
                                                                 <rect key="frame" x="282.5" y="0.0" width="60.5" height="62"/>
                                                                 <color key="backgroundColor" red="0.9882352941176471" green="0.26666666666666666" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <state key="normal" title="0">
+                                                                <state key="normal" title="←">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
                                                             </button>
