@@ -19,19 +19,15 @@ class Description {
         case .Unary(_):
             if isPartialResult {
                 if let prevAppend = previousAppend  {
-                    previousAppend = symbol +  surroundWithParentheses(description: prevAppend)
+                    previousAppend = symbol +  betweenParentheses(description: prevAppend)
                     description = baseDescription! + previousAppend!
                 } else {
                     baseDescription = description
-                    previousAppend = symbol + surroundWithParentheses(description: getNumberString(number: accumulator))
+                    previousAppend = symbol + betweenParentheses(description: getNumberString(number: accumulator))
                     description += previousAppend!
                 }
             } else {
-                if description == "" {
-                    description = symbol + surroundWithParentheses(description: getNumberString(number: accumulator))
-                } else {
-                    description = symbol + surroundWithParentheses(description: description)
-                }
+                description = symbol + betweenParentheses(description: (description == "" ? getNumberString(number: accumulator) : description))
             }
         case .Binary(_):
             if isPartialResult {
@@ -42,11 +38,7 @@ class Description {
                     previousAppend = nil
                 }
             } else {
-                if description == "" {
-                    description = getNumberString(number: accumulator) + symbol
-                } else {
-                    description += symbol
-                }
+                description = (description == "" ? getNumberString(number: accumulator) : description) + symbol
             }
         case .Equal:
             guard isPartialResult else {
@@ -73,7 +65,7 @@ class Description {
         }
     }
     
-    private func surroundWithParentheses(description: String) -> String {
+    private func betweenParentheses(description: String) -> String {
         return "(" + description + ")"
     }
 }
