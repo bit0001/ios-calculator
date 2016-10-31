@@ -92,6 +92,9 @@
                                                                 <state key="normal" title="C">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="clearEverything" destination="ejF-9v-RbS" eventType="touchUpInside" id="9lf-Z0-bma"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
