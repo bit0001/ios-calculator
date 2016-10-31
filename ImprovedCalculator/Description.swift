@@ -18,7 +18,7 @@ class Description {
         switch operation {
         case .Unary(_):
             if isPartialResult {
-                if let prevAppend = previousAppend  {
+                if let prevAppend = previousAppend {
                     previousAppend = symbol +  betweenParentheses(description: prevAppend)
                     description = baseDescription! + previousAppend!
                 } else {
@@ -44,11 +44,13 @@ class Description {
             guard isPartialResult else {
                 break
             }
-
-            if (previousAppend == nil) {
-                description += getNumberString(number: accumulator)
+            
+            guard previousAppend == nil else {
+                previousAppend = nil
+                break
             }
-            previousAppend = nil
+            
+            description += getNumberString(number: accumulator)
         default:
             break
         }
