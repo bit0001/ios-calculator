@@ -19,44 +19,44 @@ class Description {
         case .Unary(_):
             if isPartialResult {
                 if let prevAppend = previousAppend  {
-                    previousAppend = symbol + "(" + prevAppend + ")";
-                    description = baseDescription! + previousAppend!;
+                    previousAppend = symbol +  surroundWithParentheses(description: prevAppend)
+                    description = baseDescription! + previousAppend!
                 } else {
-                    baseDescription = description;
-                    previousAppend = symbol + "(" + getNumberString(number: accumulator) + ")";
-                    description += previousAppend!;
+                    baseDescription = description
+                    previousAppend = symbol + surroundWithParentheses(description: getNumberString(number: accumulator))
+                    description += previousAppend!
                 }
             } else {
                 if description == "" {
-                    description = symbol + "(" + getNumberString(number: accumulator) + ")";
+                    description = symbol + surroundWithParentheses(description: getNumberString(number: accumulator))
                 } else {
-                    description = symbol + "(" + description + ")";
+                    description = symbol + surroundWithParentheses(description: description)
                 }
             }
         case .Binary(_):
             if isPartialResult {
                 if previousAppend == nil {
-                    description += getNumberString(number: accumulator) + symbol;
+                    description += getNumberString(number: accumulator) + symbol
                 } else {
-                    description += symbol;
-                    previousAppend = nil;
+                    description += symbol
+                    previousAppend = nil
                 }
             } else {
                 if description == "" {
-                    description = getNumberString(number: accumulator) + symbol;
+                    description = getNumberString(number: accumulator) + symbol
                 } else {
-                    description += symbol;
+                    description += symbol
                 }
             }
         case .Equal:
             guard isPartialResult else {
-                break;
+                break
             }
 
             if (previousAppend == nil) {
-                description += getNumberString(number: accumulator);
+                description += getNumberString(number: accumulator)
             }
-            previousAppend = nil;
+            previousAppend = nil
         default:
             break
         }
@@ -73,7 +73,7 @@ class Description {
         }
     }
     
-    private func getStringBetweenParenthesis(description: String) -> String {
+    private func surroundWithParentheses(description: String) -> String {
         return "(" + description + ")"
     }
 }
