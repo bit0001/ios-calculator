@@ -39,10 +39,6 @@ class ViewController: UIViewController {
         isUserInMiddleOfTyping = true
     }
     
-    private func isPointInDisplayedData() -> Bool {
-        return resultDisplay.text!.range(of: ".") != nil
-    }
-    
     @IBAction private func performOperation(_ sender: UIButton) {
         let symbol = sender.currentTitle!
         
