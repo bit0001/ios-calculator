@@ -117,16 +117,16 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohw-ab-99f">
                                                                 <rect key="frame" x="141" y="0.0" width="61" height="62"/>
                                                                 <color key="backgroundColor" red="0.38431372549019605" green="0.10196078431372549" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <state key="normal" title="0">
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                <state key="normal" title="10ˣ">
                                                                     <color key="titleColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-2b-R08">
                                                                 <rect key="frame" x="212" y="0.0" width="60.5" height="62"/>
                                                                 <color key="backgroundColor" red="0.38431372549019605" green="0.10196078431372549" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <state key="normal" title="0">
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                <state key="normal" title="log">
                                                                     <color key="titleColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                             </button>
@@ -162,16 +162,16 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyb-mS-wgU">
                                                                 <rect key="frame" x="141" y="0.0" width="61" height="62.5"/>
                                                                 <color key="backgroundColor" red="0.38431372549019605" green="0.10196078431372549" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <state key="normal" title="0">
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                <state key="normal" title="eˣ">
                                                                     <color key="titleColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Soa-sw-lJe">
                                                                 <rect key="frame" x="212" y="0.0" width="60.5" height="62.5"/>
                                                                 <color key="backgroundColor" red="0.38431372549019605" green="0.10196078431372549" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <state key="normal" title="0">
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                <state key="normal" title="ln">
                                                                     <color key="titleColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                             </button>
