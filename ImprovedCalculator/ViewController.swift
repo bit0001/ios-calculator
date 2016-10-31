@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     private var displayedValue: Double {
         get {
-            return Double(resultDisplay.text!)!
+            return Double(getCurrentDisplayedData())!
         }
         
         set {
@@ -30,13 +30,16 @@ class ViewController: UIViewController {
         let character = sender.currentTitle!
         
         if isUserInMiddleOfTyping {
-            let currentDisplayedData = resultDisplay.text!
-            resultDisplay.text = currentDisplayedData + character
+            resultDisplay.text = getCurrentDisplayedData() + character
         } else {
             resultDisplay.text = character
         }
         
         isUserInMiddleOfTyping = true
+    }
+    
+    private func getCurrentDisplayedData() -> String {
+        return resultDisplay.text!
     }
     
     @IBAction private func performOperation(_ sender: UIButton) {
@@ -53,8 +56,8 @@ class ViewController: UIViewController {
     
     @IBAction private func addDecimalPoint() {
         if (isUserInMiddleOfTyping) {
-            if (!resultDisplay.text!.contains(".")) {
-                resultDisplay.text = resultDisplay.text! +  "."
+            if (!getCurrentDisplayedData().contains(".")) {
+                resultDisplay.text = getCurrentDisplayedData() +  "."
             }
         } else {
             resultDisplay.text = "0."
@@ -70,7 +73,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction private func deleteDigit() {
-        var currentText = resultDisplay.text!
+        var currentText = getCurrentDisplayedData()
         let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
         currentText.removeSubrange(range)
         
