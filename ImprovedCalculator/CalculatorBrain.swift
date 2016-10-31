@@ -4,7 +4,11 @@ import Foundation
 class CalculatorBrain {
 
     private var accumulator = 0.0
-    var description = Description()
+    private var operationDescription = Description()
+    
+    var description: String {
+        return operationDescription.description
+    }
 
     var result: Double {
         return accumulator
@@ -18,7 +22,7 @@ class CalculatorBrain {
         accumulator = operand
         
         if !isPartialResult {
-            description.description = ""
+            operationDescription = Description()
         }
     }
 
@@ -31,7 +35,7 @@ class CalculatorBrain {
 
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
-            description.update(symbol: symbol, accumulator: accumulator, isPartialResult: isPartialResult)
+            operationDescription.update(symbol: symbol, accumulator: accumulator, isPartialResult: isPartialResult)
             computeResult(operation: operation)
         }
     }

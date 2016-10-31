@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         
         set {
             resultDisplay.text = CalculationFormater().formatNumber(number: newValue)
-            descriptionDisplay.text = brain.description.description + ( brain.isPartialResult ? "..." : "=")
+            descriptionDisplay.text = brain.description + ( brain.isPartialResult ? "..." : "=")
         }
     }
     
