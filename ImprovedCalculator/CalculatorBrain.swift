@@ -50,10 +50,6 @@ class CalculatorBrain {
         }
     }
 
-    private func getStringBetweenParenthesis(description: String) -> String {
-        return "(" + description + ")"
-    }
-
     private func executePendingBinaryOperation() {
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.fistOperand, accumulator)

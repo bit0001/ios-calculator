@@ -72,4 +72,8 @@ class Description {
             return CalculationFormater().formatNumber(number: number)
         }
     }
+    
+    private func getStringBetweenParenthesis(description: String) -> String {
+        return "(" + description + ")"
+    }
 }
