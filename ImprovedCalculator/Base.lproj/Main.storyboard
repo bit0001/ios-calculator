@@ -92,6 +92,9 @@
                                                                 <state key="normal" title="→M">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="setVariable:" destination="ejF-9v-RbS" eventType="touchUpInside" id="gVW-QY-e4l"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xk6-Fy-94z">
                                                                 <rect key="frame" x="282.5" y="0.0" width="60.5" height="53.5"/>
@@ -100,6 +103,9 @@
                                                                 <state key="normal" title="M">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="getVariable:" destination="ejF-9v-RbS" eventType="touchUpInside" id="Rrl-yP-u0C"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
