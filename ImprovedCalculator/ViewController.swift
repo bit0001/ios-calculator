@@ -92,4 +92,11 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func setVariable(_ sender: UIButton) {
+        let variableName = sender.currentTitle!
+        let range = variableName.index(variableName.startIndex, offsetBy: 1)..<variableName.endIndex
+        brain.variableValues[variableName[range]] = displayedValue
+    }
+    
+    
 }
