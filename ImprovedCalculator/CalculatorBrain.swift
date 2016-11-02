@@ -2,9 +2,11 @@ import Foundation
 
 
 class CalculatorBrain {
+    typealias PropertyList = AnyObject
 
     private var accumulator = 0.0
     private var operationDescription = Description()
+    private var internalProgram = [AnyObject]()
     private var pending: PendingBinaryOperation?
 
     var description: String {
@@ -21,14 +23,43 @@ class CalculatorBrain {
 
     func setOperand(operand: Double) {
         accumulator = operand
+        internalProgram.append(operand as AnyObject)
         
         if !isPartialResult {
             operationDescription = Description()
         }
     }
+    
+    var program: PropertyList {
+        get {
+            return internalProgram as CalculatorBrain.PropertyList
+        }
+        
+        set {
+            clear()
+            if let arrayOfOps = newValue as? [AnyObject] {
+                for op in arrayOfOps {
+                    if let operand = op as? Double {
+                        setOperand(operand: operand)
+                    } else if let operation = op as? String {
+                        performOperation(symbol: operation)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func clear() {
+        accumulator = 0
+        pending = nil
+        operationDescription = Description()
+        internalProgram.removeAll()
+    }
+    
 
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
+            internalProgram.append(symbol as AnyObject)
             operationDescription.update(symbol: symbol, accumulator: accumulator, isPartialResult: isPartialResult)
             computeResult(operation: operation)
         }

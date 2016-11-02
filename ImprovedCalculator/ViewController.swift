@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var isUserInMiddleOfTyping = false
-    private var brain = CalculatorBrain()
     @IBOutlet private weak var resultDisplay: UILabel!
     @IBOutlet private weak var descriptionDisplay: UILabel!
+    
+    private var isUserInMiddleOfTyping = false
+    private var brain = CalculatorBrain()
+    private var savedProgram: CalculatorBrain.PropertyList?
     
     private var displayedValue: Double {
         get {
@@ -76,6 +78,17 @@ class ViewController: UIViewController {
             isUserInMiddleOfTyping = false
         } else {
             resultDisplay.text = currentText
+        }
+    }
+    
+    @IBAction func save() {
+        savedProgram = brain.program
+    }
+    
+    @IBAction func restore() {
+        if savedProgram != nil {
+            brain.program = savedProgram!
+            displayedValue = brain.result
         }
     }
     
