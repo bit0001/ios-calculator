@@ -9,6 +9,7 @@ class CalculatorBrain {
     private var internalProgram = [AnyObject]()
     var variableValues = [String: Double]()
     private var pending: PendingBinaryOperation?
+    private var operand: AnyObject = 0.0 as AnyObject
 
     var description: String {
         return operationDescription.description
@@ -24,6 +25,7 @@ class CalculatorBrain {
 
     func setOperand(operand: Double) {
         accumulator = operand
+        self.operand = operand as AnyObject
         internalProgram.append(operand as AnyObject)
         
         if !isPartialResult {
@@ -42,8 +44,12 @@ class CalculatorBrain {
                 for op in arrayOfOps {
                     if let operand = op as? Double {
                         setOperand(operand: operand)
-                    } else if let operation = op as? String {
-                        performOperation(symbol: operation)
+                    } else if let string = op as? String {
+                        if  operations[string] != nil {
+                            performOperation(symbol: string)
+                        } else {
+                            setOperand(variableName: string)
+                        }
                     }
                 }
             }
@@ -53,7 +59,6 @@ class CalculatorBrain {
     private func clear() {
         accumulator = 0
         pending = nil
-        operationDescription = Description()
         internalProgram.removeAll()
     }
     
@@ -61,7 +66,7 @@ class CalculatorBrain {
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
             internalProgram.append(symbol as AnyObject)
-            operationDescription.update(symbol: symbol, accumulator: accumulator, isPartialResult: isPartialResult)
+            operationDescription.update(symbol: symbol, operand: operand, isPartialResult: isPartialResult)
             computeResult(operation: operation)
         }
     }
@@ -90,7 +95,14 @@ class CalculatorBrain {
     }
     
     func setOperand(variableName: String) {
-        setOperand(operand: variableValues[variableName] ?? 0.0)
+        let operand = variableValues[variableName] ?? 0.0
+        accumulator = operand
+        internalProgram.append(variableName as AnyObject)
+        self.operand = variableName as AnyObject
+        
+        if !isPartialResult {
+            operationDescription = Description()
+        }
     }
 
 }

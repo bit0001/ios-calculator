@@ -96,11 +96,15 @@ class ViewController: UIViewController {
         let variableName = sender.currentTitle!
         let range = variableName.index(variableName.startIndex, offsetBy: 1)..<variableName.endIndex
         brain.variableValues[variableName[range]] = displayedValue
+        brain.program = brain.program
+        displayedValue = brain.result
+        isUserInMiddleOfTyping = false
     }
     
     @IBAction func getVariable(_ sender: UIButton) {
         let variableName = sender.currentTitle!
         brain.setOperand(variableName: variableName)
+        displayedValue = brain.result
     }
     
 }
