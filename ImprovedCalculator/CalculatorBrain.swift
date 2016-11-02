@@ -7,6 +7,7 @@ class CalculatorBrain {
     private var accumulator = 0.0
     private var operationDescription = Description()
     private var internalProgram = [AnyObject]()
+    var variableValues = [String: Double]()
     private var pending: PendingBinaryOperation?
 
     var description: String {
@@ -86,6 +87,10 @@ class CalculatorBrain {
             accumulator = pending!.binaryFunction(pending!.fistOperand, accumulator)
             pending = nil
         }
+    }
+    
+    func setOperand(variableName: String) {
+        setOperand(operand: variableValues[variableName] ?? 0.0)
     }
 
 }
