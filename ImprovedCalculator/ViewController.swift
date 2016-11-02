@@ -98,5 +98,9 @@ class ViewController: UIViewController {
         brain.variableValues[variableName[range]] = displayedValue
     }
     
+    @IBAction func getVariable(_ sender: UIButton) {
+        let variableName = sender.currentTitle!
+        brain.setOperand(variableName: variableName)
+    }
     
 }
