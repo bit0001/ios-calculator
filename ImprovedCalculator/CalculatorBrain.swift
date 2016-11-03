@@ -119,8 +119,6 @@ class CalculatorBrain {
             internalProgram.removeLast()
             
             switch operation {
-            case .Constant(_), .Random, .Binary(_):
-                break
             case .Unary(_):
                 let beforeEqualSign = internalProgram.last
                 if let symbol = beforeEqualSign as? String {
@@ -147,6 +145,8 @@ class CalculatorBrain {
                         internalProgram.removeLast()
                     }
                 }
+            default:
+                break
             }
         } else if let _ = internalProgram.last as? Double {
             internalProgram.removeLast()
