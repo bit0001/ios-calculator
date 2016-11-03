@@ -41,10 +41,6 @@ class ViewController: UIViewController {
         updateDeleteUndoButton()
     }
     
-    private func getCurrentDisplayedData() -> String {
-        return resultDisplay.text!
-    }
-    
     @IBAction private func performOperation(_ sender: UIButton) {
         let symbol = sender.currentTitle!
         
@@ -127,6 +123,10 @@ class ViewController: UIViewController {
         let variableName = sender.currentTitle!
         brain.setOperand(variableName: variableName)
         displayedValue = brain.result
+    }
+    
+    private func getCurrentDisplayedData() -> String {
+        return resultDisplay.text!
     }
     
     private func updateDeleteUndoButton() {
