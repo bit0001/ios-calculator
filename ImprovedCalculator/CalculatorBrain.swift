@@ -58,6 +58,7 @@ class CalculatorBrain {
     
     private func clear() {
         accumulator = 0
+        operand = 0.0 as AnyObject
         pending = nil
         internalProgram.removeAll()
     }
@@ -75,6 +76,7 @@ class CalculatorBrain {
         switch operation {
         case .Constant(let constant):
             accumulator = constant
+            operand = constant as AnyObject
         case .Unary(let function):
             accumulator = function(accumulator)
         case .Binary(let function):
@@ -84,6 +86,7 @@ class CalculatorBrain {
             executePendingBinaryOperation()
         case .Random:
             accumulator = drand48()
+            operand = accumulator as AnyObject
         }
     }
 
@@ -102,6 +105,57 @@ class CalculatorBrain {
         
         if !isPartialResult {
             operationDescription = Description()
+        }
+    }
+    
+    func undoLastOperation() {
+        operationDescription = Description()
+        if internalProgram.count == 1 {
+            internalProgram.removeLast()
+            return
+        }
+        
+        if let symbol = internalProgram.last as? String {
+            let operation = operations[symbol]!
+            
+            switch operation {
+            case .Constant(_), .Random:
+                internalProgram.removeLast()
+            case .Unary(_):
+                internalProgram.removeLast()
+                
+                let beforeEqualSign = internalProgram.last
+                if let symbol = beforeEqualSign as? String {
+                    let previousOperation = operations[symbol]!
+                    switch previousOperation {
+                    case .Binary(_):
+                        internalProgram.removeLast()
+                    default:
+                        break
+                    }
+                }
+            case .Binary(_):
+                internalProgram.removeLast()
+            case .Equal:
+                internalProgram.removeLast()
+                guard internalProgram.count > 1 else {
+                    return
+                }
+
+                let beforeEqualSign = internalProgram.last
+                
+                if let _ = beforeEqualSign as? Double {
+                    internalProgram.removeLast()
+                    internalProgram.removeLast()
+                } else if let symbol = beforeEqualSign as? String {
+                    if symbol != "=" {
+                        internalProgram.removeLast()
+                    }
+                }
+            }
+        } else if let _ = internalProgram.last as? Double {
+            internalProgram.removeLast()
+            internalProgram.removeLast()
         }
     }
 

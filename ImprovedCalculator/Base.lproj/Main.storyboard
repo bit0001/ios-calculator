@@ -219,12 +219,12 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5O-UD-I3P">
                                                                 <rect key="frame" x="282.5" y="0.0" width="60.5" height="53.5"/>
                                                                 <color key="backgroundColor" red="0.9882352941176471" green="0.24313725490196078" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                                <state key="normal" title="←">
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                                <state key="normal" title="undo">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="deleteDigit" destination="ejF-9v-RbS" eventType="touchUpInside" id="V45-OJ-JGw"/>
+                                                                    <action selector="deleteOrUndo:" destination="ejF-9v-RbS" eventType="touchUpInside" id="P0j-ax-hsg"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -552,6 +552,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteUndoButton" destination="p5O-UD-I3P" id="QQ6-S2-mUp"/>
                         <outlet property="descriptionDisplay" destination="O0d-fw-1al" id="Inc-VC-EgV"/>
                         <outlet property="resultDisplay" destination="LGx-Q6-8j5" id="GQG-W8-1VH"/>
                     </connections>
