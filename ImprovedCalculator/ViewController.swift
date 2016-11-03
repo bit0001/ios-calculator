@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var resultDisplay: UILabel!
     @IBOutlet private weak var descriptionDisplay: UILabel!
-    @IBOutlet weak var deleteUndoButton: UIButton!
+    @IBOutlet private weak var deleteUndoButton: UIButton!
     
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
@@ -107,7 +107,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func setVariable(_ sender: UIButton) {
+    @IBAction private func setVariable(_ sender: UIButton) {
         let variableName = sender.currentTitle!
         let range = variableName.index(variableName.startIndex, offsetBy: 1)..<variableName.endIndex
         brain.variableValues[variableName[range]] = displayedValue
