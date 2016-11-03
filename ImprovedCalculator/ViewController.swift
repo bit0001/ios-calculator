@@ -31,6 +31,11 @@ class ViewController: UIViewController {
     
     @IBAction private func touchDigit(_ sender: UIButton) {
         let character = sender.currentTitle!
+        
+        if getCurrentDisplayedData() == "0" && character == "0" {
+            return
+        }
+        
         resultDisplay.text = isUserInMiddleOfTyping ? getCurrentDisplayedData() + character : character
         isUserInMiddleOfTyping = true
         updateDeleteUndoButton()
