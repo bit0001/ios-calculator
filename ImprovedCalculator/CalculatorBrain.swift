@@ -122,12 +122,13 @@ class CalculatorBrain {
             case .Unary(_):
                 let beforeEqualSign = internalProgram.last
                 if let symbol = beforeEqualSign as? String {
-                    let previousOperation = operations[symbol]!
-                    switch previousOperation {
-                    case .Binary(_):
-                        internalProgram.removeLast()
-                    default:
-                        break
+                    if let previousOperation = operations[symbol] {
+                        switch previousOperation {
+                        case .Binary(_):
+                            internalProgram.removeLast()
+                        default:
+                            break
+                        }
                     }
                 }
             case .Equal:
