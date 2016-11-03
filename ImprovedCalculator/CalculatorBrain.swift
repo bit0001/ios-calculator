@@ -45,32 +45,7 @@ class CalculatorBrain {
             }
         }
     }
-
-    func setOperand(operand: Double) {
-        accumulator = operand
-        self.operand = operand as AnyObject
-        internalProgram.append(operand as AnyObject)
-        
-        if !isPartialResult {
-            operationDescription = Description()
-        }
-    }
     
-    private func clear() {
-        accumulator = 0
-        operand = 0.0 as AnyObject
-        pending = nil
-        internalProgram.removeAll()
-    }
-
-    func performOperation(symbol: String) {
-        if let operation = operations[symbol] {
-            internalProgram.append(symbol as AnyObject)
-            operationDescription.update(symbol: symbol, operand: operand, isPartialResult: isPartialResult)
-            computeResult(operation: operation)
-        }
-    }
-
     private func computeResult(operation: Operator) {
         switch operation {
         case .Constant(let constant):
@@ -88,11 +63,29 @@ class CalculatorBrain {
             operand = accumulator as AnyObject
         }
     }
-
+    
     private func executePendingBinaryOperation() {
         if pending != nil {
             accumulator = pending!.binaryFunction(pending!.fistOperand, accumulator)
             pending = nil
+        }
+    }
+    
+    private func clear() {
+        accumulator = 0
+        operand = 0.0 as AnyObject
+        pending = nil
+        internalProgram.removeAll()
+    }
+    
+
+    func setOperand(operand: Double) {
+        accumulator = operand
+        self.operand = operand as AnyObject
+        internalProgram.append(operand as AnyObject)
+        
+        if !isPartialResult {
+            operationDescription = Description()
         }
     }
     
@@ -104,6 +97,14 @@ class CalculatorBrain {
         
         if !isPartialResult {
             operationDescription = Description()
+        }
+    }
+
+    func performOperation(symbol: String) {
+        if let operation = operations[symbol] {
+            internalProgram.append(symbol as AnyObject)
+            operationDescription.update(symbol: symbol, operand: operand, isPartialResult: isPartialResult)
+            computeResult(operation: operation)
         }
     }
     
