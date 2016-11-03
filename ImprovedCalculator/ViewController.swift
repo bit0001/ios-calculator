@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
     private var savedProgram: CalculatorBrain.PropertyList?
-    
     private var displayedValue: Double {
         get {
             return Double(getCurrentDisplayedData())!
@@ -74,8 +73,7 @@ class ViewController: UIViewController {
         updateDeleteUndoButton()
     }
     
-    
-    @IBAction func deleteOrUndo(_ sender: UIButton) {
+    @IBAction private func deleteOrUndo(_ sender: UIButton) {
         if isUserInMiddleOfTyping {
             var currentText = getCurrentDisplayedData()
             let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
@@ -98,11 +96,11 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func save() {
+    @IBAction private func save() {
         savedProgram = brain.program
     }
     
-    @IBAction func restore() {
+    @IBAction private func restore() {
         if savedProgram != nil {
             brain.program = savedProgram!
             displayedValue = brain.result
@@ -119,7 +117,7 @@ class ViewController: UIViewController {
         updateDeleteUndoButton()
     }
     
-    @IBAction func getVariable(_ sender: UIButton) {
+    @IBAction private func getVariable(_ sender: UIButton) {
         let variableName = sender.currentTitle!
         brain.setOperand(variableName: variableName)
         displayedValue = brain.result

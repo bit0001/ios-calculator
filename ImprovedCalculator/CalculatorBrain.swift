@@ -7,10 +7,10 @@ class CalculatorBrain {
     private var accumulator = 0.0
     private var operationDescription = Description()
     private var internalProgram = [AnyObject]()
-    var variableValues = [String: Double]()
     private var pending: PendingBinaryOperation?
     private var operand: AnyObject = 0.0 as AnyObject
 
+    var variableValues = [String: Double]()
     var description: String {
         return operationDescription.description
     }
@@ -21,16 +21,6 @@ class CalculatorBrain {
 
     var isPartialResult: Bool {
         return pending != nil
-    }
-
-    func setOperand(operand: Double) {
-        accumulator = operand
-        self.operand = operand as AnyObject
-        internalProgram.append(operand as AnyObject)
-        
-        if !isPartialResult {
-            operationDescription = Description()
-        }
     }
     
     var program: PropertyList {
@@ -55,6 +45,16 @@ class CalculatorBrain {
             }
         }
     }
+
+    func setOperand(operand: Double) {
+        accumulator = operand
+        self.operand = operand as AnyObject
+        internalProgram.append(operand as AnyObject)
+        
+        if !isPartialResult {
+            operationDescription = Description()
+        }
+    }
     
     private func clear() {
         accumulator = 0
@@ -62,7 +62,6 @@ class CalculatorBrain {
         pending = nil
         internalProgram.removeAll()
     }
-    
 
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
