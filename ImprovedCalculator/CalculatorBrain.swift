@@ -115,15 +115,13 @@ class CalculatorBrain {
             return
         }
         
-        if let symbol = internalProgram.last as? String {
-            let operation = operations[symbol]!
+        if let symbol = internalProgram.last as? String, let operation = operations[symbol] {
+            internalProgram.removeLast()
             
             switch operation {
-            case .Constant(_), .Random:
-                internalProgram.removeLast()
+            case .Constant(_), .Random, .Binary(_):
+                break
             case .Unary(_):
-                internalProgram.removeLast()
-                
                 let beforeEqualSign = internalProgram.last
                 if let symbol = beforeEqualSign as? String {
                     let previousOperation = operations[symbol]!
@@ -134,10 +132,7 @@ class CalculatorBrain {
                         break
                     }
                 }
-            case .Binary(_):
-                internalProgram.removeLast()
             case .Equal:
-                internalProgram.removeLast()
                 guard internalProgram.count > 1 else {
                     return
                 }
