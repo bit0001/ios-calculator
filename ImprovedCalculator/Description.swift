@@ -13,7 +13,16 @@ class Description {
     private var previousAppend: String?
     private var baseDescription: String?
     
-    func update(symbol: String, accumulator: Double, isPartialResult: Bool) {
+    func update(symbol: String, operand: AnyObject, isPartialResult: Bool) {
+        var operandString = ""
+        
+        if let operandDouble = operand as? Double {
+            operandString = getNumberString(number: operandDouble)
+        } else if let variableName = operand as? String {
+            operandString = variableName
+        }
+        
+        
         let operation = operations[symbol]!
         switch operation {
         case .Unary(_):
@@ -23,22 +32,22 @@ class Description {
                     description = baseDescription! + prevAppend
                 } else {
                     baseDescription = description
-                    previousAppend = symbol + betweenParentheses(description: getNumberString(number: accumulator))
+                    previousAppend = symbol + betweenParentheses(description: operandString)
                     description += previousAppend!
                 }
             } else {
-                description = symbol + betweenParentheses(description: (description == "" ? getNumberString(number: accumulator) : description))
+                description = symbol + betweenParentheses(description: (description == "" ? operandString : description))
             }
         case .Binary(_):
             if isPartialResult {
                 if previousAppend == nil {
-                    description += getNumberString(number: accumulator) + symbol
+                    description += operandString + symbol
                 } else {
                     description += symbol
                     previousAppend = nil
                 }
             } else {
-                description = (description == "" ? getNumberString(number: accumulator) : description) + symbol
+                description = (description == "" ? operandString : description) + symbol
             }
         case .Equal:
             guard isPartialResult else {
@@ -50,7 +59,7 @@ class Description {
                 break
             }
             
-            description += getNumberString(number: accumulator)
+            description += operandString
         default:
             break
         }

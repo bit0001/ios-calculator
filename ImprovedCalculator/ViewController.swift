@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var resultDisplay: UILabel!
     @IBOutlet private weak var descriptionDisplay: UILabel!
+    @IBOutlet weak var deleteUndoButton: UIButton!
     
     private var isUserInMiddleOfTyping = false
     private var brain = CalculatorBrain()
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
         let character = sender.currentTitle!
         resultDisplay.text = isUserInMiddleOfTyping ? getCurrentDisplayedData() + character : character
         isUserInMiddleOfTyping = true
+        updateDeleteUndoButton()
     }
     
     private func getCurrentDisplayedData() -> String {
@@ -44,6 +46,7 @@ class ViewController: UIViewController {
         if isUserInMiddleOfTyping {
             brain.setOperand(operand: displayedValue)
             isUserInMiddleOfTyping = false
+            updateDeleteUndoButton()
         }
         
         brain.performOperation(symbol: symbol)
@@ -59,6 +62,7 @@ class ViewController: UIViewController {
             resultDisplay.text = "0."
         }
         isUserInMiddleOfTyping = true
+        updateDeleteUndoButton()
     }
     
     @IBAction private func clearEverything() {
@@ -66,20 +70,32 @@ class ViewController: UIViewController {
         descriptionDisplay.text = " "
         brain = CalculatorBrain()
         isUserInMiddleOfTyping = false
+        updateDeleteUndoButton()
     }
     
-    @IBAction private func deleteDigit() {
-        var currentText = getCurrentDisplayedData()
-        let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
-        currentText.removeSubrange(range)
-        
-        if currentText == "" {
-            resultDisplay.text = "0"
-            isUserInMiddleOfTyping = false
+    
+    @IBAction func deleteOrUndo(_ sender: UIButton) {
+        if isUserInMiddleOfTyping {
+            var currentText = getCurrentDisplayedData()
+            let range = currentText.index(currentText.endIndex, offsetBy: -1)..<currentText.endIndex
+            currentText.removeSubrange(range)
+            
+            if currentText == "" {
+                resultDisplay.text = "0"
+                isUserInMiddleOfTyping = false
+                updateDeleteUndoButton()
+            } else {
+                resultDisplay.text = currentText
+            }
         } else {
-            resultDisplay.text = currentText
+            brain.undoLastOperation()
+            brain.program = brain.program
+            displayedValue = brain.result
+            isUserInMiddleOfTyping = false
+            updateDeleteUndoButton()
         }
     }
+    
     
     @IBAction func save() {
         savedProgram = brain.program
@@ -90,6 +106,29 @@ class ViewController: UIViewController {
             brain.program = savedProgram!
             displayedValue = brain.result
         }
+    }
+    
+    @IBAction func setVariable(_ sender: UIButton) {
+        let variableName = sender.currentTitle!
+        let range = variableName.index(variableName.startIndex, offsetBy: 1)..<variableName.endIndex
+        brain.variableValues[variableName[range]] = displayedValue
+        brain.program = brain.program
+        displayedValue = brain.result
+        isUserInMiddleOfTyping = false
+        updateDeleteUndoButton()
+    }
+    
+    @IBAction func getVariable(_ sender: UIButton) {
+        let variableName = sender.currentTitle!
+        brain.setOperand(variableName: variableName)
+        displayedValue = brain.result
+    }
+    
+    private func updateDeleteUndoButton() {
+        UIView.setAnimationsEnabled(false)
+        deleteUndoButton.setTitle(isUserInMiddleOfTyping ? "←" : "undo", for: .normal)
+        deleteUndoButton.titleLabel?.font = UIFont(name: "Helvetica Neue", size: CGFloat(isUserInMiddleOfTyping ? 30 : 18))
+        UIView.setAnimationsEnabled(true)
     }
     
 }
