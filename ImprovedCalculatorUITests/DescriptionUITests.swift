@@ -26,6 +26,7 @@ class DescriptionUITests: XCTestCase {
         super.tearDown()
         XCTAssertEqual(expectedResultDisplay, XCUIApplication().staticTexts["result_display"].label)
         XCTAssertEqual(expectedOperationDisplay, XCUIApplication().staticTexts["operation_display"].label)
+//        app.buttons["C"].tap()
         
     }
     
@@ -35,6 +36,36 @@ class DescriptionUITests: XCTestCase {
         
         app.buttons["7"].tap()
         app.buttons["+"].tap()
+    }
+    
+    func test7Plus9() {
+        expectedResultDisplay = "9"
+        expectedOperationDisplay = "7+..."
+        
+        app.buttons["7"].tap()
+        app.buttons["+"].tap()
+        app.buttons["9"].tap()
+    }
+    
+    func test7Plus9Equal() {
+        expectedResultDisplay = "16"
+        expectedOperationDisplay = "7+9="
+        
+        app.buttons["7"].tap()
+        app.buttons["+"].tap()
+        app.buttons["9"].tap()
+        app.buttons["="].tap()
+    }
+    
+    func test7Plus9EqualSquareRoot() {
+        expectedResultDisplay = "4"
+        expectedOperationDisplay = "√(7+9)="
+        
+        app.buttons["7"].tap()
+        app.buttons["+"].tap()
+        app.buttons["9"].tap()
+        app.buttons["="].tap()
+        app.buttons["√"].tap()
     }
     
 }
