@@ -22,12 +22,9 @@ class DescriptionUITests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
         XCTAssertEqual(expectedResultDisplay, XCUIApplication().staticTexts["result_display"].label)
         XCTAssertEqual(expectedOperationDisplay, XCUIApplication().staticTexts["operation_display"].label)
-//        app.buttons["C"].tap()
-        
     }
     
     func test7Plus() {
